@@ -1,14 +1,15 @@
-// src/App.tsx
 import React, { useState } from "react";
 import "./index.css";
 
 type Event = {
   id: number;
   title: string;
-  dates: string[]; // changed from single date string to array of dates
+  dates: string[]; // multiple dates
   desc: string;
   badge: string;
-  img: string;
+  img: string; // main image
+  extraImgs?: string[]; // additional images for modal thumbnails
+  price?: number; // ticket price
 };
 
 const eventsData: Event[] = [
@@ -19,8 +20,12 @@ const eventsData: Event[] = [
     desc: "24-hour coding sprint with prizes.",
     badge: "ACM",
     img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 499,
   },
-  // Removed CSI Tech Quiz event here
   {
     id: 3,
     title: "Circuit Lab",
@@ -28,6 +33,11 @@ const eventsData: Event[] = [
     desc: "Hands-on electronics and circuit building workshop.",
     badge: "IEEE",
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 599,
   },
   {
     id: 4,
@@ -36,6 +46,11 @@ const eventsData: Event[] = [
     desc: "Model bridge design and testing competition.",
     badge: "ASCE",
     img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 450,
   },
   {
     id: 5,
@@ -44,6 +59,11 @@ const eventsData: Event[] = [
     desc: "Build and control a simple robot with sensors.",
     badge: "IETE",
     img: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 550,
   },
   {
     id: 6,
@@ -52,6 +72,11 @@ const eventsData: Event[] = [
     desc: "Create and present an engineering design prototype.",
     badge: "IEI",
     img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 480,
   },
   {
     id: 7,
@@ -60,6 +85,11 @@ const eventsData: Event[] = [
     desc: "Web security challenge to find and exploit vulnerabilities.",
     badge: "OWASP",
     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 520,
   },
   {
     id: 8,
@@ -68,6 +98,11 @@ const eventsData: Event[] = [
     desc: "Solve real-world business problems in teams.",
     badge: "TRS",
     img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 400,
   },
   {
     id: 9,
@@ -76,6 +111,11 @@ const eventsData: Event[] = [
     desc: "Analyze data and present insights within 3 hours.",
     badge: "S4DS",
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 530,
   },
   {
     id: 10,
@@ -84,8 +124,13 @@ const eventsData: Event[] = [
     desc: "Guest lecture on AI ethics and applications.",
     badge: "ACM SIGAI",
     img: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=400&q=80",
+    extraImgs: [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+    ],
+    price: 600,
   },
-  // New CSI events (7 cards)
+  // CSI events (7 cards)
   {
     id: 11,
     title: "Garba Workshop",
@@ -93,6 +138,8 @@ const eventsData: Event[] = [
     desc: "Learn traditional Garba dance steps and rhythms.",
     badge: "CSI",
     img: "/garba.jpg",
+    extraImgs: ["/foot.jpg", "/tech.jpg"],
+    price: 299,
   },
   {
     id: 12,
@@ -101,6 +148,8 @@ const eventsData: Event[] = [
     desc: "Competitive rink football matches and training.",
     badge: "CSI",
     img: "/foot.jpg",
+    extraImgs: ["/garba.jpg", "/tech.jpg"],
+    price: 350,
   },
   {
     id: 13,
@@ -109,6 +158,8 @@ const eventsData: Event[] = [
     desc: "A tech-themed scavenger hunt with puzzles and prizes.",
     badge: "CSI",
     img: "/tech.jpg",
+    extraImgs: ["/garba.jpg", "/foot.jpg"],
+    price: 320,
   },
   {
     id: 14,
@@ -117,6 +168,8 @@ const eventsData: Event[] = [
     desc: "Night cricket matches with neon lights and music.",
     badge: "CSI",
     img: "/neon.jpg",
+    extraImgs: ["/cric.jpg", "/bull.jpg"],
+    price: 400,
   },
   {
     id: 15,
@@ -125,6 +178,8 @@ const eventsData: Event[] = [
     desc: "Auction event for cricket teams and players.",
     badge: "CSI",
     img: "/cric.jpg",
+    extraImgs: ["/neon.jpg", "/bull.jpg"],
+    price: 450,
   },
   {
     id: 16,
@@ -133,6 +188,8 @@ const eventsData: Event[] = [
     desc: "Precision aiming and target shooting competition.",
     badge: "CSI",
     img: "/bull.jpg",
+    extraImgs: ["/neon.jpg", "/cric.jpg"],
+    price: 380,
   },
   {
     id: 17,
@@ -141,12 +198,18 @@ const eventsData: Event[] = [
     desc: "Call of Duty Mobile tournament with exciting prizes.",
     badge: "CSI",
     img: "/cod.jpg",
+    extraImgs: ["/neon.jpg", "/cric.jpg"],
+    price: 500,
   },
 ];
 
 function App() {
   const [filterBy, setFilterBy] = useState<string>("all");
   const [sortBy, setSortBy] = useState<"alphabetical" | "committee">("alphabetical");
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [modalMainImg, setModalMainImg] = useState<string | null>(null);
+  const [ticketQty, setTicketQty] = useState<number>(1);
+  const [ticketDate, setTicketDate] = useState<string>("2025-09-25");
 
   // Filter events by committee or show all
   const filteredEvents = filterBy === "all"
@@ -170,6 +233,37 @@ function App() {
   const formatDate = (isoDate: string) => {
     const d = new Date(isoDate);
     return d.toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  };
+
+  // Open modal for event
+  const openModal = (event: Event) => {
+    setSelectedEvent(event);
+    setModalMainImg(event.img);
+    setTicketQty(1);
+    setTicketDate(event.dates[0]);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setSelectedEvent(null);
+    setModalMainImg(null);
+  };
+
+  // Handle ticket quantity change
+  const handleQtyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = Math.max(1, Math.min(10, Number(e.target.value))); // limit 1-10
+    setTicketQty(val);
+  };
+
+  // Handle ticket date change
+  const handleDateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setTicketDate(e.target.value);
+  };
+
+  // Handle Buy Tickets click (placeholder)
+  const handleBuyTickets = () => {
+    alert(`Buying ${ticketQty} ticket(s) for ${selectedEvent?.title} on ${formatDate(ticketDate)} at ₹${(selectedEvent?.price || 0) * ticketQty}`);
+    // Later integrate Razorpay here
   };
 
   return (
@@ -253,7 +347,17 @@ function App() {
               <p style={{ color: "#a078ff" }}>No events found for this committee.</p>
             ) : (
               sortedEvents.map((event) => (
-                <div key={event.id} className="card">
+                <div
+                  key={event.id}
+                  className="card"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => openModal(event)}
+                  tabIndex={0}
+                                    onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") openModal(event);
+                  }}
+                  aria-label={`Open details for ${event.title}`}
+                >
                   <img src={event.img} alt={event.title} />
                   <div className="card-title">{event.title}</div>
                   <div className="card-meta">
@@ -275,8 +379,195 @@ function App() {
           </div>
         </section>
       </div>
+
+      {/* Modal */}
+      {selectedEvent && (
+        <div
+          className="modal-overlay"
+          onClick={closeModal}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+          tabIndex={-1}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.75)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+        >
+          <div
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "rgba(20,10,40,0.95)",
+              borderRadius: "12px",
+              maxWidth: "600px",
+              width: "90%",
+              maxHeight: "90vh",
+              overflowY: "auto",
+              padding: "1.5rem",
+              color: "#d1c4e9",
+              boxShadow: "0 0 20px #7f5fff",
+              position: "relative",
+            }}
+          >
+            <button
+              onClick={closeModal}
+              aria-label="Close modal"
+              style={{
+                position: "absolute",
+                top: "1rem",
+                right: "1rem",
+                background: "transparent",
+                border: "none",
+                color: "#a078ff",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+              }}
+            >
+              &times;
+            </button>
+
+            <h2 id="modal-title" style={{ marginBottom: "1rem" }}>
+              {selectedEvent.title}
+            </h2>
+
+            {/* Images */}
+            <div style={{ marginBottom: "1rem" }}>
+              <img
+                src={modalMainImg || selectedEvent.img}
+                alt={`${selectedEvent.title} main`}
+                style={{ width: "100%", borderRadius: "8px", marginBottom: "0.5rem" }}
+              />
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                {[selectedEvent.img, ...(selectedEvent.extraImgs || [])].map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`${selectedEvent.title} thumbnail ${i + 1}`}
+                    onClick={() => setModalMainImg(img)}
+                    style={{
+                      width: "80px",
+                      height: "60px",
+                      objectFit: "cover",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      border: modalMainImg === img ? "2px solid #a078ff" : "2px solid transparent",
+                      boxShadow: modalMainImg === img ? "0 0 8px #a078ff" : "none",
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Dates */}
+            <div style={{ marginBottom: "1rem", fontWeight: "600" }}>
+              Dates:{" "}
+              {selectedEvent.dates
+                .map((d) =>
+                  new Date(d).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" })
+                )
+                .join(", ")}
+            </div>
+
+            {/* Description */}
+            <p style={{ marginBottom: "1.5rem" }}>{selectedEvent.desc}</p>
+
+            {/* Ticket purchase */}
+            <div
+              style={{
+                background: "rgba(127, 87, 255, 0.15)",
+                padding: "1rem",
+                borderRadius: "8px",
+                boxShadow: "0 0 10px #7f5fff88",
+              }}
+            >
+              <h3 style={{ marginBottom: "1rem" }}>Buy Tickets</h3>
+
+              <div style={{ marginBottom: "1rem" }}>
+                <label htmlFor="ticket-date" style={{ display: "block", marginBottom: "0.3rem" }}>
+                  Select Date:
+                </label>
+                <select
+                  id="ticket-date"
+                  value={ticketDate}
+                  onChange={handleDateChange}
+                  style={{
+                    width: "100%",
+                    padding: "0.4rem 0.6rem",
+                    borderRadius: "6px",
+                    border: "1px solid #7f5fff",
+                    background: "rgba(30,10,50,0.85)",
+                    color: "#d1c4e9",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                    boxShadow: "0 0 10px #7f5fff88",
+                  }}
+                >
+                  {selectedEvent.dates.map((d) => (
+                    <option key={d} value={d}>
+                      {formatDate(d)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div style={{ marginBottom: "1rem" }}>
+                <label htmlFor="ticket-qty" style={{ display: "block", marginBottom: "0.3rem" }}>
+                  Quantity:
+                </label>
+                <input
+                  id="ticket-qty"
+                  type="number"
+                  min={1}
+                  max={10}
+                  value={ticketQty}
+                  onChange={handleQtyChange}
+                  style={{
+                    width: "100%",
+                    padding: "0.4rem 0.6rem",
+                    borderRadius: "6px",
+                    border: "1px solid #7f5fff",
+                    background: "rgba(30,10,50,0.85)",
+                    color: "#d1c4e9",
+                    fontWeight: "600",
+                    boxShadow: "0 0 10px #7f5fff88",
+                  }}
+                />
+              </div>
+
+              <button
+                onClick={handleBuyTickets}
+                style={{
+                  width: "100%",
+                  padding: "0.75rem",
+                  backgroundColor: "#7f5fff",
+                  color: "#fff",
+                  fontWeight: "700",
+                  fontSize: "1.1rem",
+                  borderRadius: "8px",
+                  border: "none",
+                  cursor: "pointer",
+                  boxShadow: "0 0 15px #7f5fff",
+                  transition: "background-color 0.3s ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a078ff")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#7f5fff")}
+              >
+                Buy Tickets ₹{(selectedEvent.price || 0) * ticketQty}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
 
 export default App;
+
+                   
