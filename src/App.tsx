@@ -5,7 +5,7 @@ import "./index.css";
 type Event = {
   id: number;
   title: string;
-  date: string;
+  dates: string[]; // changed from single date string to array of dates
   desc: string;
   badge: string;
   img: string;
@@ -15,7 +15,7 @@ const eventsData: Event[] = [
   {
     id: 1,
     title: "Hackathon",
-    date: "2025-09-12",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "24-hour coding sprint with prizes.",
     badge: "ACM",
     img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
@@ -24,7 +24,7 @@ const eventsData: Event[] = [
   {
     id: 3,
     title: "Circuit Lab",
-    date: "2025-09-13",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Hands-on electronics and circuit building workshop.",
     badge: "IEEE",
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
@@ -32,7 +32,7 @@ const eventsData: Event[] = [
   {
     id: 4,
     title: "Bridge Building",
-    date: "2025-09-12",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Model bridge design and testing competition.",
     badge: "ASCE",
     img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
@@ -40,7 +40,7 @@ const eventsData: Event[] = [
   {
     id: 5,
     title: "Robotics Workshop",
-    date: "2025-09-15",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Build and control a simple robot with sensors.",
     badge: "IETE",
     img: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=400&q=80",
@@ -48,7 +48,7 @@ const eventsData: Event[] = [
   {
     id: 6,
     title: "Mechanical Design Challenge",
-    date: "2025-09-13",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Create and present an engineering design prototype.",
     badge: "IEI",
     img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80",
@@ -56,7 +56,7 @@ const eventsData: Event[] = [
   {
     id: 7,
     title: "CTF (Capture The Flag)",
-    date: "2025-09-15",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Web security challenge to find and exploit vulnerabilities.",
     badge: "OWASP",
     img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80",
@@ -64,7 +64,7 @@ const eventsData: Event[] = [
   {
     id: 8,
     title: "Business Case Study",
-    date: "2025-09-12",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Solve real-world business problems in teams.",
     badge: "TRS",
     img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
@@ -72,7 +72,7 @@ const eventsData: Event[] = [
   {
     id: 9,
     title: "Data Science Sprint",
-    date: "2025-09-14",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Analyze data and present insights within 3 hours.",
     badge: "S4DS",
     img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
@@ -80,7 +80,7 @@ const eventsData: Event[] = [
   {
     id: 10,
     title: "AI Talk",
-    date: "2025-09-14",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Guest lecture on AI ethics and applications.",
     badge: "ACM SIGAI",
     img: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?auto=format&fit=crop&w=400&q=80",
@@ -89,7 +89,7 @@ const eventsData: Event[] = [
   {
     id: 11,
     title: "Garba Workshop",
-    date: "2025-09-16",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Learn traditional Garba dance steps and rhythms.",
     badge: "CSI",
     img: "/garba.jpg",
@@ -97,7 +97,7 @@ const eventsData: Event[] = [
   {
     id: 12,
     title: "Rink Football",
-    date: "2025-09-17",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Competitive rink football matches and training.",
     badge: "CSI",
     img: "/foot.jpg",
@@ -105,7 +105,7 @@ const eventsData: Event[] = [
   {
     id: 13,
     title: "Tech Hunt",
-    date: "2025-09-18",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "A tech-themed scavenger hunt with puzzles and prizes.",
     badge: "CSI",
     img: "/tech.jpg",
@@ -113,7 +113,7 @@ const eventsData: Event[] = [
   {
     id: 14,
     title: "Neon Cricket",
-    date: "2025-09-19",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Night cricket matches with neon lights and music.",
     badge: "CSI",
     img: "/neon.jpg",
@@ -121,7 +121,7 @@ const eventsData: Event[] = [
   {
     id: 15,
     title: "Cricket Auction",
-    date: "2025-09-20",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Auction event for cricket teams and players.",
     badge: "CSI",
     img: "/cric.jpg",
@@ -129,7 +129,7 @@ const eventsData: Event[] = [
   {
     id: 16,
     title: "Bullseye",
-    date: "2025-09-21",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Precision aiming and target shooting competition.",
     badge: "CSI",
     img: "/bull.jpg",
@@ -137,7 +137,7 @@ const eventsData: Event[] = [
   {
     id: 17,
     title: "CODM",
-    date: "2025-09-22",
+    dates: ["2025-09-25", "2025-09-26", "2025-09-27"],
     desc: "Call of Duty Mobile tournament with exciting prizes.",
     badge: "CSI",
     img: "/cod.jpg",
@@ -165,6 +165,12 @@ function App() {
 
   // Get unique committees for filter dropdown
   const committees = Array.from(new Set(eventsData.map((e) => e.badge))).sort();
+
+  // Helper to format date nicely
+  const formatDate = (isoDate: string) => {
+    const d = new Date(isoDate);
+    return d.toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  };
 
   return (
     <>
@@ -252,11 +258,14 @@ function App() {
                   <div className="card-title">{event.title}</div>
                   <div className="card-meta">
                     📅{" "}
-                    {new Date(event.date).toLocaleDateString(undefined, {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
+                    {event.dates
+                      .map((d) =>
+                        new Date(d).toLocaleDateString(undefined, {
+                          day: "numeric",
+                          month: "short",
+                        })
+                      )
+                      .join(", ")}
                   </div>
                   <div className="card-desc">{event.desc}</div>
                   <div className="badge">{event.badge}</div>
