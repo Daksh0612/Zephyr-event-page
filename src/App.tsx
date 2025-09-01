@@ -114,7 +114,7 @@ function App() {
       <div className="stars2"></div>
       <div className="stars3"></div>
 
-      {/* Orbit rings */}
+      {/* Orbit ringss */}
       <div className="orbits" aria-hidden="true">
         <div className="orbit orbit1" style={{ "--rotateX": "60deg" } as React.CSSProperties}></div>
         <div className="orbit orbit2" style={{ "--rotateX": "30deg" } as React.CSSProperties}></div>
