@@ -139,7 +139,7 @@ const eventsData: Event[] = [
     badge: "CSI",
     img: "/garba.jpg",
     extraImgs: ["/foot.jpg", "/tech.jpg"],
-    price: 299,
+    price: 200,
   },
   {
     id: 12,
@@ -149,7 +149,7 @@ const eventsData: Event[] = [
     badge: "CSI",
     img: "/foot.jpg",
     extraImgs: ["/garba.jpg", "/tech.jpg"],
-    price: 350,
+    price: 400,
   },
   {
     id: 13,
@@ -159,7 +159,7 @@ const eventsData: Event[] = [
     badge: "CSI",
     img: "/tech.jpg",
     extraImgs: ["/garba.jpg", "/foot.jpg"],
-    price: 320,
+    price: 100,
   },
   {
     id: 14,
@@ -169,7 +169,7 @@ const eventsData: Event[] = [
     badge: "CSI",
     img: "/neon.jpg",
     extraImgs: ["/cric.jpg", "/bull.jpg"],
-    price: 400,
+    price: 250,
   },
   {
     id: 15,
@@ -179,7 +179,7 @@ const eventsData: Event[] = [
     badge: "CSI",
     img: "/cric.jpg",
     extraImgs: ["/neon.jpg", "/bull.jpg"],
-    price: 450,
+    price: 300,
   },
   {
     id: 16,
@@ -189,7 +189,7 @@ const eventsData: Event[] = [
     badge: "CSI",
     img: "/bull.jpg",
     extraImgs: ["/neon.jpg", "/cric.jpg"],
-    price: 380,
+    price: 30,
   },
   {
     id: 17,
@@ -199,7 +199,7 @@ const eventsData: Event[] = [
     badge: "CSI",
     img: "/cod.jpg",
     extraImgs: ["/neon.jpg", "/cric.jpg"],
-    price: 500,
+    price: 150,
   },
 ];
 
