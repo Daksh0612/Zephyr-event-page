@@ -353,7 +353,7 @@ function App() {
                   style={{ cursor: "pointer" }}
                   onClick={() => openModal(event)}
                   tabIndex={0}
-                                    onKeyDown={(e) => {
+                  onKeyDown={(e) => {
                     if (e.key === "Enter" || e.key === " ") openModal(event);
                   }}
                   aria-label={`Open details for ${event.title}`}
@@ -399,7 +399,7 @@ function App() {
             zIndex: 1000,
           }}
         >
-          <div
+                    <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
             style={{
@@ -437,32 +437,68 @@ function App() {
             </h2>
 
             {/* Images */}
-            <div style={{ marginBottom: "1rem" }}>
-              <img
-                src={modalMainImg || selectedEvent.img}
-                alt={`${selectedEvent.title} main`}
-                style={{ width: "100%", borderRadius: "8px", marginBottom: "0.5rem" }}
-              />
-              <div style={{ display: "flex", gap: "0.5rem" }}>
-                {[selectedEvent.img, ...(selectedEvent.extraImgs || [])].map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={`${selectedEvent.title} thumbnail ${i + 1}`}
-                    onClick={() => setModalMainImg(img)}
-                    style={{
-                      width: "80px",
-                      height: "60px",
-                      objectFit: "cover",
-                      borderRadius: "6px",
-                      cursor: "pointer",
-                      border: modalMainImg === img ? "2px solid #a078ff" : "2px solid transparent",
-                      boxShadow: modalMainImg === img ? "0 0 8px #a078ff" : "none",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
+<div style={{ marginBottom: "1rem" }}>
+  {/* Main image container */}
+  <div
+    style={{
+      position: "relative",
+      width: "100%",
+      maxWidth: "1049px",
+      paddingBottom: "63.7%", // height = width / 1.57
+      borderRadius: "8px",
+      overflow: "hidden",
+      marginBottom: "0.5rem",
+    }}
+  >
+    <img
+      src={modalMainImg || selectedEvent.img}
+      alt={`${selectedEvent.title} main`}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+      }}
+    />
+  </div>
+
+  {/* Thumbnails */}
+  <div style={{ display: "flex", gap: "0.5rem" }}>
+    {[selectedEvent.img, ...(selectedEvent.extraImgs || [])].map((img, i) => (
+      <div
+        key={i}
+        style={{
+          position: "relative",
+          width: "80px",
+          paddingBottom: `${80 / 1.57}px`, // height = width / 1.57
+          borderRadius: "6px",
+          overflow: "hidden",
+          cursor: "pointer",
+          border: modalMainImg === img ? "2px solid #a078ff" : "2px solid transparent",
+          boxShadow: modalMainImg === img ? "0 0 8px #a078ff" : "none",
+          flexShrink: 0,
+        }}
+        onClick={() => setModalMainImg(img)}
+      >
+        <img
+          src={img}
+          alt={`${selectedEvent.title} thumbnail ${i + 1}`}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
 
             {/* Dates */}
             <div style={{ marginBottom: "1rem", fontWeight: "600" }}>
@@ -570,4 +606,4 @@ function App() {
 
 export default App;
 
-                   
+           
