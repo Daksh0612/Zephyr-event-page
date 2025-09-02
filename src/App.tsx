@@ -138,7 +138,7 @@ const eventsData: Event[] = [
     desc: "Learn traditional Garba dance steps and rhythms.",
     badge: "CSI",
     img: "/garba.jpg",
-    extraImgs: ["/foot.jpg", "/tech.jpg"],
+    extraImgs: ["/garba1.jpg", "/garba2.jpeg"],
     price: 200,
   },
   {
@@ -148,7 +148,7 @@ const eventsData: Event[] = [
     desc: "Competitive rink football matches and training.",
     badge: "CSI",
     img: "/foot.jpg",
-    extraImgs: ["/garba.jpg", "/tech.jpg"],
+    extraImgs: ["/foot1.jpg", "/foot2.jpg"],
     price: 400,
   },
   {
@@ -158,7 +158,7 @@ const eventsData: Event[] = [
     desc: "A tech-themed scavenger hunt with puzzles and prizes.",
     badge: "CSI",
     img: "/tech.jpg",
-    extraImgs: ["/garba.jpg", "/foot.jpg"],
+    extraImgs: ["/tech1.jpg", "/tech2.jpeg"],
     price: 100,
   },
   {
@@ -168,7 +168,7 @@ const eventsData: Event[] = [
     desc: "Night cricket matches with neon lights and music.",
     badge: "CSI",
     img: "/neon.jpg",
-    extraImgs: ["/cric.jpg", "/bull.jpg"],
+    extraImgs: ["/neon1.jpg", "/neon2.jpg"],
     price: 250,
   },
   {
@@ -178,7 +178,7 @@ const eventsData: Event[] = [
     desc: "Auction event for cricket teams and players.",
     badge: "CSI",
     img: "/cric.jpg",
-    extraImgs: ["/neon.jpg", "/bull.jpg"],
+    extraImgs: ["/cric1.jpeg", "/cric2.jpg"],
     price: 300,
   },
   {
@@ -188,7 +188,7 @@ const eventsData: Event[] = [
     desc: "Precision aiming and target shooting competition.",
     badge: "CSI",
     img: "/bull.jpg",
-    extraImgs: ["/neon.jpg", "/cric.jpg"],
+    extraImgs: ["/bull1.jpeg", "/bull2.jpg"],
     price: 30,
   },
   {
@@ -198,7 +198,7 @@ const eventsData: Event[] = [
     desc: "Call of Duty Mobile tournament with exciting prizes.",
     badge: "CSI",
     img: "/cod.jpg",
-    extraImgs: ["/neon.jpg", "/cric.jpg"],
+    extraImgs: ["/cod1.jpg", "/cod2.jpg"],
     price: 150,
   },
 ];
